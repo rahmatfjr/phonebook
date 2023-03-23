@@ -6,7 +6,9 @@ var { Response } = require('../helpers/util')
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
   try {
-    const users = await models.User.findAll()
+    const users = await models.User.findAll({
+      include: models.Todo
+    })
     res.json(new Response(users))
   }
   catch (err) {
